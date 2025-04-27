@@ -4,7 +4,6 @@ import {
   Typography, 
   Box, 
   Paper, 
-  Grid, 
   TextField, 
   Button, 
   Divider,
@@ -238,155 +237,165 @@ const Checkout = () => {
           <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
             {steps.map((label) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                <StepLabel color='#fff'>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
           
           {activeStep === 0 && (
-            <Grid container spacing={4}>
+            <div className="checkout-grid">
               {/* Left Side - Cart Items */}
-              <Grid item xs={12} md={5} lg={4}>
+              <div className="checkout-grid-item checkout-summary">
                 <Paper elevation={3} sx={{ p: 3, height: '100%' }}>
-                  <Typography variant="h6" gutterBottom>
-                    Tóm tắt đơn hàng
+                  <Typography variant="h6" component="h2" gutterBottom className="order-summary-title">
+                    Đơn hàng của bạn
                   </Typography>
-                  
                   <List sx={{ mb: 2 }}>
                     {cart.map((item) => (
-                      <ListItem key={item.id} alignItems="flex-start" sx={{ px: 0 }}>
-                        <ListItemAvatar>
-                          <Avatar 
-                            alt={item.name} 
-                            src={item.image} 
-                            variant="square"
-                            sx={{ width: 60, height: 60, mr: 2 }}
+                      <div key={`${item.id}-${item.color}-${item.size}`} className="cart-item">
+                        <ListItem alignItems="flex-start" sx={{ px: 0 }}>
+                          <ListItemAvatar>
+                            <Avatar
+                              alt={item.name}
+                              src={item.image}
+                              variant="rounded"
+                              sx={{ width: 64, height: 64 }}
+                              className="item-image"
+                            />
+                          </ListItemAvatar>
+                          <ListItemText
+                            primary={item.fullName}
+                            secondary={
+                              <React.Fragment>
+                                <Typography component="span" variant="body2" color="rgba(255, 255, 255, 0.7)">
+                                  {`Màu: ${item.colorName}, Size: ${item.size}`}<br />
+                                  {`Số lượng: ${item.quantity}`}<br />
+                                  {formatPrice(parseFloat(item.price) * item.quantity)}
+                                </Typography>
+                              </React.Fragment>
+                            }
+                            sx={{ ml: 1 }}
                           />
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={item.name}
-                          secondary={
-                            <>
-                              <Typography component="span" variant="body2" color="text.primary">
-                                {formatPrice(parseFloat(item.price))}
-                              </Typography>
-                              {' x ' + item.quantity}
-                              {item.color && <span> - Màu: {item.colorName}</span>}
-                              {item.size && <span> - Size: {item.size}</span>}
-                            </>
-                          }
-                        />
-                        <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                          {formatPrice(parseFloat(item.price) * item.quantity)}
-                        </Typography>
-                      </ListItem>
+                        </ListItem>
+                      </div>
                     ))}
                   </List>
-                  
                   <Divider sx={{ my: 2 }} />
-                  
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                    <Typography variant="body1">Tạm tính:</Typography>
-                    <Typography variant="body1">{formatPrice(subtotal)}</Typography>
+                  <Box sx={{ py: 1 }}>
+                    <div className="summary-row">
+                      <Typography variant="body1">Tạm tính</Typography>
+                      <Typography variant="body1">{formatPrice(subtotal)}</Typography>
+                    </div>
                   </Box>
-                  
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                    <Typography variant="body1">Phí vận chuyển:</Typography>
-                    <Typography variant="body1">{formatPrice(shippingFee)}</Typography>
+                  <Box sx={{ py: 1 }}>
+                    <div className="summary-row">
+                      <Typography variant="body1">Phí vận chuyển</Typography>
+                      <Typography variant="body1">{formatPrice(shippingFee)}</Typography>
+                    </div>
                   </Box>
-                  
                   <Divider sx={{ my: 2 }} />
-                  
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography variant="h6">Tổng cộng:</Typography>
-                    <Typography variant="h6" color="primary.main">{formatPrice(total)}</Typography>
+                  <Box sx={{ py: 1 }}>
+                    <div className="summary-row">
+                      <Typography variant="body1" className="order-total">Tổng cộng</Typography>
+                      <Typography variant="body1" className="order-total">{formatPrice(total)}</Typography>
+                    </div>
                   </Box>
                 </Paper>
-              </Grid>
+              </div>
               
-              {/* Right Side - Checkout Form */}
-              <Grid item xs={12} md={7} lg={8}>
+              {/* Right Side - Shipping Information */}
+              <div className="checkout-grid-item checkout-form">
                 <Paper elevation={3} sx={{ p: 3 }}>
-                  <Typography variant="h6" gutterBottom>
+                  <Typography variant="h6" gutterBottom className="shipping-info-title">
                     Thông tin giao hàng
                   </Typography>
-                  
-                  <form onSubmit={handleSubmit}>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={6}>
+                  <Box component="form" onSubmit={handleSubmit}>
+                    <div className="form-grid">
+                      <div className="form-grid-item half">
                         <TextField
                           required
-                          fullWidth
-                          label="Họ và tên"
+                          id="name"
                           name="name"
+                          label="Họ tên"
+                          fullWidth
+                          autoComplete="name"
                           value={formData.name}
                           onChange={handleChange}
                         />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
+                      </div>
+                      <div className="form-grid-item half">
                         <TextField
                           required
-                          fullWidth
-                          label="Email"
+                          id="email"
                           name="email"
-                          type="email"
+                          label="Email"
+                          fullWidth
+                          autoComplete="email"
                           value={formData.email}
                           onChange={handleChange}
                         />
-                      </Grid>
-                      <Grid item xs={12}>
+                      </div>
+                      <div className="form-grid-item full">
                         <TextField
                           required
-                          fullWidth
-                          label="Số điện thoại"
+                          id="phone"
                           name="phone"
+                          label="Số điện thoại"
+                          fullWidth
+                          autoComplete="tel"
                           value={formData.phone}
                           onChange={handleChange}
                         />
-                      </Grid>
-                      <Grid item xs={12}>
+                      </div>
+                      <div className="form-grid-item full">
                         <TextField
                           required
-                          fullWidth
-                          label="Địa chỉ giao hàng"
+                          id="address"
                           name="address"
+                          label="Địa chỉ"
+                          fullWidth
+                          autoComplete="street-address"
                           value={formData.address}
                           onChange={handleChange}
                         />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
+                      </div>
+                      <div className="form-grid-item half">
                         <TextField
                           required
-                          fullWidth
-                          label="Thành phố"
+                          id="city"
                           name="city"
+                          label="Thành phố"
+                          fullWidth
+                          autoComplete="address-level2"
                           value={formData.city}
                           onChange={handleChange}
                         />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
+                      </div>
+                      <div className="form-grid-item half">
                         <TextField
                           required
-                          fullWidth
-                          label="Mã bưu điện"
+                          id="zipCode"
                           name="zipCode"
+                          label="Mã bưu điện"
+                          fullWidth
+                          autoComplete="postal-code"
                           value={formData.zipCode}
                           onChange={handleChange}
                         />
-                      </Grid>
-                      <Grid item xs={12}>
+                      </div>
+                      <div className="form-grid-item full">
                         <TextField
-                          fullWidth
-                          label="Ghi chú đơn hàng"
+                          id="note"
                           name="note"
+                          label="Ghi chú đơn hàng"
+                          fullWidth
                           multiline
-                          rows={3}
+                          rows={4}
                           value={formData.note}
                           onChange={handleChange}
-                          placeholder="Thông tin thêm về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."
                         />
-                      </Grid>
-                      <Grid item xs={12}>
+                      </div>
+                      <div className="form-grid-item full">
                         <Button
                           type="submit"
                           variant="contained"
@@ -394,82 +403,80 @@ const Checkout = () => {
                           size="large"
                           fullWidth
                           disabled={loading}
-                          sx={{ mt: 2, py: 1.5, borderRadius: '8px' }}
                         >
-                          {loading ? (
-                            <CircularProgress size={24} color="inherit" />
-                          ) : (
-                            'Xác nhận đặt hàng'
-                          )}
+                          {loading ? <CircularProgress size={24} color="inherit" /> : 'Xác nhận đặt hàng'}
                         </Button>
-                      </Grid>
-                    </Grid>
-                  </form>
+                      </div>
+                    </div>
+                  </Box>
                 </Paper>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
           )}
           
-          {/* Order Confirmation Step */}
-          {activeStep === 1 && (
-            <Paper elevation={3} sx={{ p: 4, textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Typography variant="h5" component="h2" gutterBottom color="success.main">
-                  Đặt hàng thành công!
-                </Typography>
-                
-                <Typography variant="body1" paragraph>
-                  Cảm ơn bạn đã đặt hàng tại Apple Store. Đơn hàng của bạn đã được xác nhận.
-                </Typography>
-                
-                {orderInfo && (
-                  <Box sx={{ my: 2, p: 2, bgcolor: 'rgba(255, 255, 255, 0.05)', borderRadius: 1, width: '100%' }}>
-                    <Typography variant="body1" gutterBottom>
-                      <strong>Tổng tiền:</strong> {formatPrice(orderInfo.totalAmount)}
+          {activeStep === 1 && orderInfo && (
+            <Box textAlign="center" className="success-animation">
+              <Paper elevation={3} sx={{ p: 4, maxWidth: 800, mx: 'auto' }}>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                  <Avatar sx={{ bgcolor: 'success.main', width: 80, height: 80, mb: 2 }}>
+                    <span className="success-icon">✓</span>
+                  </Avatar>
+                  <Typography variant="h5" gutterBottom>
+                    Cảm ơn bạn đã đặt hàng!
+                  </Typography>
+                  <Typography variant="body1" paragraph>
+                    Đơn hàng của bạn đã được tiếp nhận và đang được xử lý.
+                  </Typography>
+                  
+                  {emailSent && (
+                    <Alert severity="success" sx={{ mb: 3, width: '100%' }}>
+                      Email xác nhận đã được gửi đến địa chỉ {orderInfo.shippingInfo.email}
+                    </Alert>
+                  )}
+                  
+                  <Divider sx={{ width: '100%', my: 3 }} />
+                  
+                  <Box sx={{ width: '100%', mb: 3 }}>
+                    <Typography variant="h6" gutterBottom className="order-summary-title">
+                      Thông tin đơn hàng
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
-                      <strong>Số lượng sản phẩm:</strong> {orderInfo.itemCount}
-                    </Typography>
-                    <Divider sx={{ my: 1.5 }} />
-                    <Typography variant="subtitle2" sx={{ mt: 1, mb: 1 }}>
-                      Thông tin giao hàng:
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>
-                      {orderInfo.shippingInfo.name}
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>
-                      Email: {orderInfo.shippingInfo.email}
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>
-                      Điện thoại: {orderInfo.shippingInfo.phone}
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>
-                      Địa chỉ: {orderInfo.shippingInfo.address}, {orderInfo.shippingInfo.city}, {orderInfo.shippingInfo.zipCode}
-                    </Typography>
-                    {orderInfo.shippingInfo.note && (
-                      <Typography variant="body2" sx={{ mb: 0.5 }}>
-                        Ghi chú: {orderInfo.shippingInfo.note}
-                      </Typography>
-                    )}
+                    
+                    <div className="confirmation-grid">
+                      <div className="confirmation-grid-item">
+                        <Typography variant="subtitle1" gutterBottom>
+                          Thông tin giao hàng
+                        </Typography>
+                        <Typography variant="body2">
+                          {orderInfo.shippingInfo.name}<br />
+                          {orderInfo.shippingInfo.email}<br />
+                          {orderInfo.shippingInfo.phone}<br />
+                          {orderInfo.shippingInfo.address}<br />
+                          {orderInfo.shippingInfo.city}, {orderInfo.shippingInfo.zipCode}
+                        </Typography>
+                      </div>
+                      <div className="confirmation-grid-item">
+                        <Typography variant="subtitle1" gutterBottom>
+                          Chi tiết thanh toán
+                        </Typography>
+                        <Typography variant="body2">
+                          Tổng tiền: {formatPrice(orderInfo.totalAmount)}<br />
+                          Số lượng: {orderInfo.itemCount} sản phẩm<br />
+                          Phương thức thanh toán: Thanh toán khi nhận hàng
+                        </Typography>
+                      </div>
+                    </div>
                   </Box>
-                )}
-                
-                <Typography variant="body2" paragraph sx={{ color: emailSent ? 'success.main' : 'text.secondary' }}>
-                  {emailSent 
-                    ? 'Email xác nhận đơn hàng đã được gửi đến địa chỉ email của bạn.' 
-                    : 'Chúng tôi sẽ gửi email xác nhận đơn hàng và thông tin vận chuyển đến địa chỉ email của bạn.'}
-                </Typography>
-                
-                <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                  <Button
-                    variant="outlined"
+                  
+                  <Button 
+                    variant="contained" 
+                    color="primary"
                     onClick={() => navigate('/')}
                   >
                     Tiếp tục mua sắm
                   </Button>
                 </Box>
-              </Box>
-            </Paper>
+              </Paper>
+            </Box>
           )}
         </Box>
       </Container>
