@@ -1,0 +1,339 @@
+.product-detail-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 40px 0;
+  background: url('https://wallpapers.com/images/featured/iphone-8-uz9asuziw85d4hh9.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+.product-detail-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.product-detail-page .MuiContainer-root {
+  position: relative;
+  z-index: 1;
+}
+
+.product-detail-page .MuiTypography-root {
+  color: white;
+}
+
+.product-detail-page .MuiDivider-root {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.product-detail-container {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 40px 32px;
+  margin-bottom: 40px;
+}
+
+.product-image-paper {
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(33,150,243,0.12);
+  background: rgba(255,255,255,0.10) !important;
+}
+
+.product-details-paper {
+  background: rgba(255,255,255,0.12) !important;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(33,150,243,0.12);
+  padding: 32px;
+}
+
+.product-title {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(90deg, #2196f3, #e91e63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-bottom: 18px !important;
+  letter-spacing: 1px;
+}
+
+.product-image-container {
+  border-radius: 18px;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 2px 12px rgba(33,150,243,0.08);
+}
+
+.product-image-container img {
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(33,150,243,0.10);
+}
+
+.product-thumbnail {
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: border 0.3s, transform 0.3s;
+}
+
+.product-thumbnail.active {
+  border: 2px solid #2196f3;
+  transform: scale(1.08);
+}
+
+.product-thumbnail:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.color-selector {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.color-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.color-option.selected::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid #1976d2;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.size-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.7);
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  padding: 0 6px;
+  height: 36px;
+  min-width: 90px;
+  box-shadow: 0 1px 4px rgba(33,150,243,0.06);
+  margin: 0;
+  gap: 2px;
+  text-align: left;
+}
+
+.quantity-selector .MuiIconButton-root {
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
+  color: #1976d2;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-size: 1.2rem;
+  transition: background 0.2s, color 0.2s;
+  margin: 0 2px;
+}
+
+.quantity-selector .MuiIconButton-root:hover:not(:disabled) {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.quantity-selector .MuiIconButton-root:disabled {
+  color: #bdbdbd;
+  background: none;
+}
+
+.quantity-selector .quantity-value {
+  min-width: 28px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0 4px;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.action-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.action-buttons .MuiButton-root {
+  border-radius: 30px !important;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 12px 32px;
+  box-shadow: 0 4px 16px rgba(33,150,243,0.10);
+  transition: all 0.3s;
+}
+
+.action-buttons .MuiButton-contained {
+  background: linear-gradient(90deg, #2196f3, #e91e63) !important;
+  color: #fff !important;
+}
+
+.action-buttons .MuiButton-contained:hover {
+  background: linear-gradient(90deg, #1976d2, #ad1457) !important;
+  box-shadow: 0 8px 24px rgba(33,150,243,0.18);
+}
+
+.action-buttons .MuiButton-outlined {
+  border: 2px solid #e91e63;
+  color: #e91e63;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-buttons .MuiButton-outlined::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(233, 30, 99, 0) 0%,
+    rgba(233, 30, 99, 0.1) 50%,
+    rgba(233, 30, 99, 0) 100%
+  );
+  transition: left 0.7s ease;
+}
+
+.action-buttons .MuiButton-outlined:hover::before {
+  left: 100%;
+}
+
+.action-buttons .MuiButton-outlined:hover {
+  background: rgba(233, 30, 99, 0.1);
+  transform: translateY(-2px);
+}
+
+.action-buttons .MuiButton-root:disabled {
+  opacity: 0.6;
+  background: #555;
+  transform: none;
+}
+
+.social-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.social-actions .MuiButton-root {
+  border-radius: 20px;
+  padding: 5px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-transform: none;
+  transition: all 0.3s ease;
+}
+
+.social-actions .MuiButton-root:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.social-actions .MuiButton-startIcon {
+  transition: transform 0.3s ease;
+}
+
+.social-actions .MuiButton-root:hover .MuiButton-startIcon {
+  transform: scale(1.2);
+}
+
+.nav-button {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-image-container:hover .nav-button {
+  opacity: 1;
+}
+
+/* Product details animation */
+.product-details-info {
+  gap: 18px;
+}
+
+.product-details-paper .MuiChip-root {
+  background: linear-gradient(90deg, #2196f3, #e91e63) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .product-detail-container {
+    padding: 16px 4px;
+  }
+  .product-details-paper {
+    padding: 16px;
+  }
+}
+
+/* Loading animation */
+.loading-spinner {
+  position: relative;
+}
+
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #2196f3;
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+} 

@@ -1,0 +1,46 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1200x600/333/fff?text=Apple+Devices');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 20px;
+}
+
+.auth-form-container {
+  padding: 40px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-form-container form {
+  margin-top: 20px;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.MuiInputLabel-root,
+.MuiOutlinedInput-input {
+  color: white;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #1976d2;
+}
+
+.MuiLink-root {
+  color: #1976d2;
+} 

@@ -1,0 +1,110 @@
+.checkout-page {
+  background: linear-gradient(135deg, #121212 0%, #000000 100%);
+  min-height: 100vh;
+  color: white;
+  padding-bottom: 60px;
+}
+
+.checkout-page .MuiPaper-root {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.checkout-page .MuiDivider-root {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.checkout-page .page-title {
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.checkout-page .MuiStepper-root {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.checkout-page .MuiStepLabel-label {
+  color: white;
+}
+
+.checkout-page .MuiStepIcon-root.Mui-active {
+  color: #2196f3;
+}
+
+.checkout-page .MuiStepIcon-root.Mui-completed {
+  color: #4caf50;
+}
+
+.checkout-page .MuiInputBase-root {
+  color: white;
+}
+
+.checkout-page .MuiOutlinedInput-root {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkout-page .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkout-page .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.checkout-page .MuiFormLabel-root {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.checkout-page .MuiInputLabel-root.Mui-focused {
+  color: #2196f3;
+}
+
+.checkout-page .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #2196f3;
+}
+
+.checkout-page .MuiButton-containedPrimary {
+  background-color: #2196f3;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-page .MuiButton-containedPrimary:hover {
+  background-color: #1976d2;
+}
+
+.checkout-page .MuiTypography-colorPrimary {
+  color: #2196f3;
+}
+
+.checkout-page .MuiAvatar-root {
+  background-color: #fff;
+}
+
+@media (max-width: 960px) {
+  .checkout-page {
+    padding: 0 0 40px 0;
+  }
+}
+
+/* Animation for successful order */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.checkout-page .MuiPaper-root {
+  animation: fadeInUp 0.6s ease forwards;
+} 

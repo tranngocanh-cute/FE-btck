@@ -1,0 +1,137 @@
+.header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.MuiToolbar-root {
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Responsive Styles */
+@media (max-width: 960px) {
+  .header .MuiTypography-root {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .header .MuiIconButton-root {
+    padding: 8px;
+  }
+  
+  .MuiToolbar-root {
+    min-height: 56px;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+}
+
+/* Drawer Styles */
+.MuiDrawer-paper {
+  background-color: #000 !important;
+  color: white !important;
+}
+
+.MuiListItemButton-root {
+  padding: 12px 16px;
+}
+
+.MuiListItemButton-root:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.MuiListItemText-primary {
+  font-size: 1.1rem;
+}
+
+.menu-divider {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Search bar styles */
+@media (max-width: 600px) {
+  .MuiInputBase-input {
+    width: 0;
+    padding: 8px !important;
+  }
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  display: inline-block;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+.nav-link.active {
+  color: #ff6f61;
+  font-weight: 500;
+}
+
+.nav-link.active::after {
+  width: 80%;
+  background-color: #ff6f61;
+}
+
+/* Mobile menu styles */
+.mobile-menu-item {
+  color: white;
+  text-decoration: none;
+  padding: 12px 16px;
+  display: block;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  margin: 2px 8px;
+}
+
+.mobile-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-item.active {
+  color: #ff6f61;
+  background-color: rgba(255, 111, 97, 0.1);
+  font-weight: 500;
+}
+
+.admin-link {
+  color: #f50057 !important;
+  font-weight: 500;
+}
+
+.admin-link:hover {
+  color: #ff4081 !important;
+}
+
+.admin-link.active {
+  color: #ff4081 !important;
+  border-bottom: 2px solid #ff4081;
+} 

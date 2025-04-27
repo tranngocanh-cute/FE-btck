@@ -1,0 +1,30 @@
+@keyframes flyToCart {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1) translateX(50vw) translateY(-50vh);
+  }
+}
+
+.add-to-cart-animation {
+  position: fixed;
+  z-index: 9999;
+  animation: flyToCart 0.5s ease-in-out forwards;
+}
+
+.product-detail-page {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.product-image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 

@@ -1,0 +1,460 @@
+/* Products Page Styles */
+.products {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('https://wallpapers.com/images/featured/iphone-8-uz9asuziw85d4hh9.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.products::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.products > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Categories Page Styles */
+.categories-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 40px 0;
+  background-image: url('https://wallpapers.com/images/featured/iphone-8-uz9asuziw85d4hh9.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categories-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.categories-page > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Grid layout fixes */
+.MuiGrid-container {
+  width: 100% !important;
+  margin: 0 auto !important;
+  justify-content: center !important;
+  display: flex !important;
+}
+
+.MuiGrid-item {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 12px !important;
+}
+
+/* Vertical stack container specific adjustments */
+.MuiGrid-container[direction="column"] {
+  height: 100% !important;
+  flex-direction: column !important;
+  padding: 0 !important; 
+  gap: 0 !important; /* Reset gap for the container */
+  width: 100% !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+}
+
+.MuiGrid-container[direction="column"] .MuiGrid-item {
+  padding: 0 !important; /* Remove padding for direct children */
+  flex-grow: 1; /* Allow items to grow and take space */
+}
+
+.MuiGrid-container[direction="column"] .MuiGrid-item:first-of-type {
+  margin-bottom: 12px !important; /* Add gap equivalent below first item */
+}
+.categories-page .MuiGrid-container:not([direction]) > .MuiGrid-item {
+  /* spacing={3} ⇒ 3 * 8px = 24px khoảng trống giữa các cột,
+     tổng 2 khoảng ở 3 cột là 48px, vậy mỗi cột lấy (100% - 48px)/3 */
+  flex-basis: calc((100% - 48px) / 3) !important;
+  max-width:  calc((100% - 48px) / 3) !important;
+  flex-grow:  0 !important;  /* đảm bảo không giãn thêm */
+}
+
+.MuiGrid-container[direction="column"] .MuiGrid-item:last-of-type {
+  margin-top: 12px !important; /* Add gap equivalent above last item */
+}
+
+/* Wide column styles (col-3) */
+.MuiGrid-item[class*="MuiGrid-grid-md-6"] {
+  max-width: 100% !important;
+  flex-basis: 50% !important; /* Ensure it takes up 50% of width on medium screens */
+}
+
+/* Category Card Styles */
+.category-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px !important;
+  color: #000;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover::before {
+  opacity: 1;
+}
+
+.category-card-featured,
+.category-card-medium,
+.category-card-small,
+.category-card-tablet,
+.category-card-mobile {
+  height: 100%;
+}
+
+.category-content {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.category-text {
+  margin-bottom: 15px;
+}
+
+.category-title {
+  color: white !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 8px !important;
+  line-height: 1.2 !important;
+}
+
+.category-subtitle {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.category-image-container {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.category-image-container.featured {
+  height: 75%;
+}
+
+.category-image-container.small {
+  height: 60%;
+}
+
+.category-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.05);
+}
+
+/* Product Card Styles - Enhanced */
+.product-card {
+  transition: all 0.3s ease;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1) !important;
+  /* Background được ghi đè tại component */
+  /* background: rgba(255, 255, 255, 0.1) !important; */
+  /* backdrop-filter: blur(5px); */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 0 !important; /* Bỏ auto margin để tránh căn giữa */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+.product-card .MuiCardMedia-root {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .MuiCardMedia-root {
+  transform: scale(1.05);
+}
+
+.product-card .MuiCardContent-root {
+  padding: 16px 20px 20px;
+}
+
+/* Bỏ padding cho h3 trong product-card */
+.product-card h3 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Bỏ padding cho p trong product-card */
+.product-card p {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Giảm kích thước font cho tất cả Typography trong product-card */
+.product-card .MuiTypography-root {
+  /* Color được ghi đè tại component */
+  /* color: white !important; */
+  font-size: 16px !important;
+}
+
+/* Ngoại lệ cho giá sản phẩm */
+.product-card .MuiTypography-root[color="error.main"],
+.product-card h6.MuiTypography-root {
+  font-size: 0.85rem !important;
+}
+
+.product-card .MuiChip-root {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+.product-card .MuiChip-root.MuiChip-colorSuccess {
+  background: rgba(46, 125, 50, 0.3) !important;
+}
+
+.product-card .MuiChip-root.MuiChip-colorError {
+  background: rgba(211, 47, 47, 0.3) !important;
+}
+
+.product-breadcrumbs {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  display: inline-block;
+  text-align: left;
+}
+
+.product-breadcrumbs .MuiBreadcrumbs-ol {
+  justify-content: flex-start;
+}
+
+.product-breadcrumbs .MuiTypography-root,
+.product-breadcrumbs .MuiLink-root {
+  color: white !important;
+}
+
+.product-title {
+  color: white !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 24px !important;
+}
+
+.products-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Pagination Styles */
+.MuiPagination-root {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.MuiPagination-ul {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  border-radius: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .featured-item,
+  .secondary-items {
+    width: 100%;
+    height: auto;
+  }
+  
+  .medium-item {
+    height: 220px;
+    margin-bottom: 24px;
+  }
+  
+  .small-items-container {
+    height: 220px;
+  }
+  
+  .category-title {
+    font-size: 1.8rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .category-card-mobile {
+    height: 220px;
+  }
+  
+  .category-content {
+    padding: 16px;
+  }
+  
+  .category-title {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Grid Layout */
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0; /* Bỏ margin âm */
+  width: 100%;
+  gap: 28px; /* Tăng khoảng cách giữa các card */
+  justify-content: flex-start !important; /* Đảm bảo luôn sắp xếp từ trái qua phải */
+  align-items: stretch;
+}
+
+.grid-item {
+  padding: 0; /* Bỏ padding để card sát nhau hơn */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mobile-item {
+  width: 100%;
+  height: 220px;
+}
+
+.tablet-item {
+  width: 50%;
+  height: 300px;
+}
+
+/* Featured Desktop Layout */
+.layout-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.featured-layout {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -12px;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+.featured-item {
+  width: 50%;
+  padding: 12px;
+  box-sizing: border-box;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+}
+
+.secondary-items {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  box-sizing: border-box;
+  height: 450px;
+  align-items: center;
+}
+
+.medium-item {
+  width: 100%;
+  height: 50%;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.small-items-container {
+  display: flex;
+  margin: -6px;
+  height: 50%;
+  width: 100%;
+  justify-content: center;
+}
+
+.small-item {
+  width: 50%;
+  padding: 6px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+} 
